@@ -1,4 +1,4 @@
-<div class="row clsbook shadow ">
+<div class="row clsbook shadow">
   <div class="col-md-5">
     <div *ngIf="book?.Thumbnail && book?.Thumbnail?.Url  && book?.Thumbnail?.Url !='' && book?.Thumbnail?.Url !='self'">
       <img class="
@@ -14,11 +14,12 @@
 </div>
 <div class="col-md-7">
   <div class="row" style="height: 100px;">
-    <div>
+
+    <div class="row"> {{ book.author}}</div>    
+    <div class="row">&nbsp;</div> 
+    <div class="row" >
       <h2>{{ book.title}} </h2>
-    </div> <br>
-    <div>{{ book.author}}</div>
-    <br><br>
+    </div>   
   </div>
   <div class="row">
     <div class="col-md-8"></div>

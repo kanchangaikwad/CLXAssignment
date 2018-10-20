@@ -55,13 +55,13 @@ export class BookComponent implements OnInit {
       alert('Already added in a cart.');
     }
 
-    //this.cartService.AddBookToCart(book, this.selectedUserId);
+    // this.cartService.AddBookToCart(book, this.selectedUserId);
   }
 
-  CheckCartBooks(){
+  CheckCartBooks() {
     this.cartService.LoadCartForUser().subscribe(
       books => {
-        this.CartBooks = books.filter(b => b.loanedTo == this.selectedUserId)
+        this.CartBooks = books.filter(b => b.loanedTo == this.selectedUserId);
       }
     );
   }

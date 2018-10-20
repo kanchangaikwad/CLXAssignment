@@ -10,11 +10,11 @@ export class AppComponent implements OnInit {
   title = 'CLXBookShelf';
   LoggedinUser = '';
 
-  constructor(private userService:UserService){
+  constructor(private userService: UserService) {
     this.LoggedinUser = this.userService.selectedUserName;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.LoggedinUser = this.userService.selectedUserName;
     console.log(this.LoggedinUser);
   }

@@ -1,6 +1,6 @@
 <p>
-  Hi {{ selectedUserName }}
-</p> 
+  <span> <h2>Hi {{ selectedUserName }} , </h2> </span>
+</p> <br>
 
 <div *ngFor='let book of books'>              
         <app-book [book]="book" (reloadBookshelf)="getBooks()"></app-book>

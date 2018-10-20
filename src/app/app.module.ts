@@ -8,6 +8,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
 import { AppComponent } from './app.component';
 import { ShelfComponent } from './shelf/shelf.component';
 import { HomeComponent } from './Home/Home.component';
@@ -34,7 +35,7 @@ import { BookComponent } from './book/book.component';
     HttpModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
