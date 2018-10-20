@@ -5,6 +5,7 @@ import { Book } from '../book';
 import { CartService } from '../cart.service';
 import { BookService } from '../book.service';
 import { UserService } from '../user.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-shelf',
@@ -22,7 +23,8 @@ export class ShelfComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private cartService: CartService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private notificationService: NotificationService) { }
 
   LoanBook(book) {
 
@@ -44,22 +46,24 @@ export class ShelfComponent implements OnInit {
     } else {
       alert('Already added in a cart.');
     }
-
-    //this.cartService.AddBookToCart(book, this.selectedUserId);
   }
 
-  CheckCartBooks(){
+  CheckCartBooks() {
     this.cartService.LoadCartForUser().subscribe(
       books => {
-        this.CartBooks = books.filter(b => b.loanedTo == this.selectedUserId)
+        this.CartBooks = books.filter(b => b.loanedTo == this.selectedUserId);
       }
     );
   }
 
   ngOnInit() {
     this.getBooks();
+
     this.selectedUserId = this.userService.currentUserId;
     this.selectedUserName = this.userService.selectedUserName;
+    if (!this.selectedUserName) {
+      this.notificationService.showWarning('User not identified.', 'Alert !');
+    }
     this.CheckCartBooks();
   }
 

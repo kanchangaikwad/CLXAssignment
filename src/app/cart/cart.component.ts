@@ -5,6 +5,7 @@ import { Book } from '../book';
 import { CartService } from '../cart.service';
 import { BookService } from '../book.service';
 import { UserService } from '../user.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit {
 
   constructor(private bookService: BookService,
     private cartService: CartService,
-    private userService: UserService) {
+    private userService: UserService,
+    private notificationService: NotificationService) {
     this.selectedBooks = this.cartService.selectedBooks;
   }
 
@@ -34,7 +36,8 @@ export class CartComponent implements OnInit {
         response = resp;
         this.cartService.LoadCartForUser().subscribe(
           books => {
-            this.selectedBooks = books.filter(b => b.loanedTo == this.selectedUserId)
+            this.selectedBooks = books.filter(b => b.loanedTo == this.selectedUserId );
+            this.notificationService.showSuccess('Book returned to shelf!', 'Success');
           }
         );
       });
@@ -46,13 +49,17 @@ export class CartComponent implements OnInit {
 
     console.log(this.selectedUserId);
     console.log(this.selectedBooks);
-    if (this.selectedUserId > 0) {
-      this.cartService.LoadCartForUser().subscribe(
-        books => {
-          this.selectedBooks = books.filter(b => b.loanedTo == this.selectedUserId);
-        }
 
-      );
+    if (!this.selectedUserName) {
+      this.notificationService.showWarning('User not identified.', 'Alert !');
+    } else {
+      if (this.selectedUserId > 0) {
+        this.cartService.LoadCartForUser().subscribe(
+          books => {
+            this.selectedBooks = books.filter(b => b.loanedTo == this.selectedUserId);
+          }
+        );
+      }
     }
 
   }

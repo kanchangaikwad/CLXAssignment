@@ -6,6 +6,8 @@ import { Users } from './mockUsers';
 import { catchError } from 'rxjs/operators';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
+import { Router} from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +19,9 @@ export class UserService {
   testval: string;
   baseURLUser = 'http://localhost:10642/api/user/';
 
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient,
+              private router: Router) {
     this.getUsers().subscribe(u => this.USERS = u);
 
   }
@@ -45,9 +49,7 @@ export class UserService {
 
 
   getSelectedUserName(id: number): string {
-    // console.log(this.currentUser);
-    // this.USERS.forEach(u => console.log(u));
-    alert('selected ' + id);
+
     const currUser = this.USERS.find(u => u.userId == id);
     if (currUser != null || currUser != undefined ) {
     console.log(currUser.firstName);
@@ -61,10 +63,10 @@ export class UserService {
   registerUser(user: User): void {
     // book.loanedTo = parseInt(userId.toString());
     console.log(user);
-    // const url = 'http://localhost:10642/api/user/adduser';
     this.http.post(this.baseURLUser + 'adduser', user).subscribe(
       data => {
           console.log('registerUser() PUT Request is successful', data);
+          this.router.navigateByUrl('/home');
       }, error => {
           console.log('registerUser() Error', error);
       });

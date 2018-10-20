@@ -53,8 +53,5 @@ onSubmit() {
 
   clearForm() {
    this.registerForm.reset();
-  } 
-
-
-
+  }
 }

@@ -8,6 +8,7 @@ import { UserService } from '../user.service';
 
 import { empty } from 'rxjs';
 import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 
 
@@ -41,4 +42,5 @@ export class HomeComponent implements OnInit {
     setUserId(userId: number): void {
         this.userService.setUser(userId);
     }
+
 }

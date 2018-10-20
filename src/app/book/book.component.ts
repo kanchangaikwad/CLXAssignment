@@ -3,6 +3,7 @@ import { Book } from '../book';
 import { BookService } from '../book.service';
 import { CartService } from '../cart.service';
 import { UserService } from '../user.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-book',
@@ -21,7 +22,8 @@ export class BookComponent implements OnInit {
 
   constructor( private bookService: BookService,
     private cartService: CartService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
      this.selectedUserId = this.userService.currentUserId;
@@ -40,8 +42,8 @@ export class BookComponent implements OnInit {
         this.bookService.LoanBook(this.book, this.selectedUserId)
           .subscribe(
             data => {
-              //this.getBooks();
               this.reloadBookshelf.emit();
+              this.notificationService.showSuccess('Book added to cart !', 'Success');
             }, error => {
               console.log('LoanBook() error', error);
             }
