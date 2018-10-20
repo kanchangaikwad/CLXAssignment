@@ -1,0 +1,32 @@
+<div class="row clsbook shadow ">
+  <div class="col-md-5">
+    <div *ngIf="book?.Thumbnail && book?.Thumbnail?.Url  && book?.Thumbnail?.Url !='' && book?.Thumbnail?.Url !='self'">
+      <img class="
+      img-fluid" [src]="book?.Thumbnail?.Url"  [style.height.px]="120" [style.width.px]="120"  onError="this.src='../../assets/unknown.png';"
+        />
+
+  </div>
+  <div *ngIf="!book?.Thumbnail?.Url || book?.Thumbnail?.Url=='self'">
+      <img class=" img-fluid" src="../../assets/images/noBookIcon.jfif"
+     [style.height.px]="120"  [style.width.px]="120"   />
+
+</div>
+</div>
+<div class="col-md-7">
+  <div class="row" style="height: 100px;">
+    <div>
+      <h2>{{ book.title}} </h2>
+    </div> <br>
+    <div>{{ book.author}}</div>
+    <br><br>
+  </div>
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-2">
+      <input type="button" class="btn btn-info" [disabled]="book.loanedTo > 0" (click)="LoanBook(book)" value="Loan">
+    </div>
+
+  </div>
+
+</div>
+</div>
