@@ -25,63 +25,17 @@ export class BookService {
 
   getBooks(): Observable<Book[]> {
     const data = this.httpClient.get<Book[]>(this.baseURLBooks + 'GetBooks');
-    console.log(data);
+    // console.log(data);
     return data;
   }
 
-  // LoanBook(book: Book, userId: number) {
-  //   console.log(book);
-  //   book.loanedTo = userId;
-  //   this.httpClient.put(this.baseURLBooks + 'loanbook', book)
-  //     .subscribe(
-  //       data => {
-  //         console.log('LoanBook() PUT Request is successful', data);
-  //         // tslint:disable-next-line:no-shadowed-variable
-  //       }, error => {
-  //         console.log('LoanBook() error', error);
-  //       }
-  //     );
-
-  // }
-
   LoanBook(book: Book, userId: number): Observable<any> {
-   
     book.loanedTo = userId;
    return this.httpClient.put(this.baseURLBooks + 'loanbook', book);
-      // .subscribe(
-      //   data => {
-      //     console.log('LoanBook() PUT Request is successful', data);
-      //     // tslint:disable-next-line:no-shadowed-variable
-      //   }, error => {
-      //     console.log('LoanBook() error', error);
-      //   }
-      // );
-
   }
 
 
-  // ReturnBook(book: Book): boolean {
-  //   book.loanedTo = null;
-  //   let result = false;
-  //   console.log(book);
-  //   // tslint:disable-next-line:max-line-length
-  //   this.http.put(this.baseURLBooks + 'returnbook', book)
-  //     .subscribe(
-  //       data => {
-  //         result = true;
-  //         console.log('ReturnBook() PUT Request is successful', data);
-
-  //         // tslint:disable-next-line:no-shadowed-variable
-  //       }, error => {
-  //         result = false;
-  //         console.log('ReturnBook() error', error);
-
-  //       }
-  //     );
-  //   return result;
-  // }
-
-  ReturnBook(book: Book): Observable<any> {
+ ReturnBook(book: Book): Observable<any> {
     book.loanedTo = null;
     return this.http.put(this.baseURLBooks + 'returnbook', book);
 

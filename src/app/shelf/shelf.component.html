@@ -1,7 +1,19 @@
-<p>
-  <span> <h2>Hi {{ selectedUserName }} , </h2> </span>
-</p> <br>
-
-<div *ngFor='let book of books'>              
-        <app-book [book]="book" (reloadBookshelf)="getBooks()"></app-book>
+<div class="row">
+  <div class="col-md-10">Hi {{ selectedUserName }}</div>
+  <div class="col-md-2">
+      <a title=" {{ badgeCount }} books in cart" routerLink="/cart" text-decoration="none" style="color: rgb(83, 146, 201)" >
+    <mat-icon matBadgeOverlap=true matBadgePosition="below after">shopping_cart</mat-icon>
+  
+    <span class="badge"> {{ badgeCount   }}</span>
+  </a> 
+  
+  </div>
+</div>
+<br>
+<div class="row">
+  <div *ngFor='let book of books'>
+    <div class="col-md-6">
+      <app-book [book]="book" (reloadBookshelf)="getBooks()"></app-book>
+    </div>
+  </div>
 </div>

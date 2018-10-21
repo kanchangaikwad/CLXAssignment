@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { User } from './user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
@@ -11,14 +11,13 @@ import { Router} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   USERS: User[] = [];
   currentUserId: number;
   selectedUserObj: User;
   selectedUserName: string;
-  testval: string;
   baseURLUser = 'http://localhost:10642/api/user/';
-
 
   constructor(private http: HttpClient,
               private router: Router) {
@@ -33,12 +32,13 @@ export class UserService {
 
   setUser(usrId: number): void {
     console.log(usrId);
-    if(usrId){
+    if (usrId) {
+
     this.currentUserId = usrId;
     this.selectedUserObj = this.USERS.find(u => u.userId == usrId);
     this.selectedUserName = this.selectedUserObj.firstName;
-  }
-  else{
+    // alert(this.selectedUserName);
+  }  else {
     this.currentUserId = null;
     this.selectedUserObj = null;
     this.selectedUserName = null;

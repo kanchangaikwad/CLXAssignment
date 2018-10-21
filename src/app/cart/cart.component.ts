@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
         this.cartService.LoadCartForUser().subscribe(
           books => {
             this.selectedBooks = books.filter(b => b.loanedTo == this.selectedUserId );
-            this.notificationService.showSuccess('Book returned to shelf!', 'Success');
+            this.notificationService.showSuccess('Book returned to shelf!', 'Success', 3000);
           }
         );
       });
@@ -51,7 +51,7 @@ export class CartComponent implements OnInit {
     console.log(this.selectedBooks);
 
     if (!this.selectedUserName) {
-      this.notificationService.showWarning('User not identified.', 'Alert !');
+      this.notificationService.showWarning('User not identified.', 'Alert !' , 3000);
     } else {
       if (this.selectedUserId > 0) {
         this.cartService.LoadCartForUser().subscribe(

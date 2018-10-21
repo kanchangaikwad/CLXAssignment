@@ -7,29 +7,29 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class NotificationService {
 
-  toastTimeout = 3000; animate: 'slideFromTop'; showCloseButton: true;
+  Timeout = 3000; animate: 'slideFromTop'; showCloseButton: true;
 
   constructor(public toastr: ToastrManager) { }
 
 
-showSuccess(message: string , title?: string ) {
+showSuccess(message: string , title?: string, time?: number ) {
   this.toastr.successToastr(message , title,
-                            {toastTimeout: 3000, animate: 'slideFromTop', showCloseButton: true});
+                            {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true});
 }
 
-showWarning(message: string , title?: string ) {
+showWarning(message: string , title?: string , time?: number) {
   this.toastr.warningToastr(message , title,
-                            {toastTimeout: 3000, animate: 'slideFromTop', showCloseButton: true});
+                            {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true});
 }
 
-showError(message: string , title?: string ) {
+showError(message: string , title?: string , time?: number) {
   this.toastr.errorToastr( message , title ,
-                         {toastTimeout: 3000, animate: 'slideFromTop', showCloseButton: true});
+                         {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true});
 }
 
-showInfo(message: string , title?: string ) {
+showInfo(message: string , title?: string, time?: number ) {
   this.toastr.infoToastr( message , title ,
-                         {toastTimeout: 3000, animate: 'slideFromTop', showCloseButton: true});
+                         {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true});
 }
 
 }

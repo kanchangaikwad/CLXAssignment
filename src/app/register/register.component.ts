@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-register',
@@ -18,14 +19,14 @@ export class RegisterComponent implements OnInit {
 
 
  submitted = false;
- test : string;
   user: User;
   firstName: any;
   lastName: any;
   contactNo: any;
   address: any;
   constructor( private formmuilder: FormBuilder,
-               private userService: UserService) { }
+               private userService: UserService,
+               private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.registerForm = this.formmuilder.group({
@@ -39,11 +40,10 @@ export class RegisterComponent implements OnInit {
 get f() {return this.registerForm.controls; }
 
 onSubmit() {
-  // TODO: Use EventEmitter with form value
-  const result: User = Object.assign({}, this.registerForm.value);
-  console.log('Enter value : ' + JSON.stringify(result));
-  this.registerUser(result);
+   const result: User = Object.assign({}, this.registerForm.value);
+   this.registerUser(result);
   this.clearForm();
+this.notificationService.showSuccess('Registered successfuly, now you can select your name from the list', 'Success', 5000);
 
 }
 

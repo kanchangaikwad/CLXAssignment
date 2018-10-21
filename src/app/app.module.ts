@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule, MatButtonModule, MatIconModule } from '@angular/material';
 
 
 
@@ -17,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { from } from 'rxjs';
 import { BookComponent } from './book/book.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { BookComponent } from './book/book.component';
     HomeComponent,
     CartComponent,
     RegisterComponent,
-    BookComponent
+    BookComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +38,8 @@ import { BookComponent } from './book/book.component';
     HttpModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
-  ],
+    ToastrModule.forRoot(),
+    MatToolbarModule, MatButtonModule, MatIconModule ],
   providers: [],
   bootstrap: [AppComponent]
 })

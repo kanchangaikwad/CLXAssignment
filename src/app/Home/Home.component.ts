@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 import { User } from '../user';
 import { Book } from '../book';
@@ -20,6 +20,9 @@ import { Router } from '@angular/router';
 })
 
 export class HomeComponent implements OnInit {
+
+    @Output() captureCurrentUser = new EventEmitter<string>();
+
     users: User[];
     selectedUserId: number;
     constructor(private bookService: BookService ,
@@ -39,8 +42,11 @@ export class HomeComponent implements OnInit {
     getUsersInfo(): void {
         this.userService.getUsers().subscribe(users => { this.users = users; });
     }
+
     setUserId(userId: number): void {
+        this.captureCurrentUser.emit('testuser');
         this.userService.setUser(userId);
+
     }
 
 }

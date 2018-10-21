@@ -43,7 +43,7 @@ export class BookComponent implements OnInit {
           .subscribe(
             data => {
               this.reloadBookshelf.emit();
-              this.notificationService.showSuccess('Book added to cart !', 'Success');
+              this.notificationService.showSuccess('Book added to cart !', 'Success', 3000);
             }, error => {
               console.log('LoanBook() error', error);
             }
@@ -52,10 +52,8 @@ export class BookComponent implements OnInit {
         alert('Already added in a cart.');
       }
     } else {
-      alert('Already added in a cart.');
+      this.notificationService.showWarning('Please select the user from the list', 'Alert !' , 3000);
     }
-
-    // this.cartService.AddBookToCart(book, this.selectedUserId);
   }
 
   CheckCartBooks() {

@@ -1,20 +1,21 @@
    
+<div class="container">
+    <div>
+      <h1>Home page : </h1>
+      <span>Are you new user ?   <a routerLink="/register" class="btn btn-info"> Register !  </a> &nbsp; Or Select your name from the list </span>
+    </div>
 <div>
-  <div>
-    <h1>Home page : </h1>
-    <span>New user ?   <a routerLink="/register"> Register !  </a> &nbsp;, Or Select your name from the list </span>
-  </div>
-<div>
-  <br>
-  <label>Name: </label>
-   <select (change)="setUserId($event.target.value)">
-    <option [ngValue]="0">--All--</option>
-    <option *ngFor="let user of users" value={{user.userId}}>
-        {{user.firstName}}
-    </option>
-</select>  
+<br>
+<label style="margin: 5px 5px 5px 5px"><h4>Name </h4></label>
+  
+   <select  (change)="setUserId($event.target.value)" >
+      <option [ngValue]="0">--All--</option>
+      <option *ngFor="let user of users" value={{user.userId}}>
+          {{user.firstName}}
+      </option>
+    </select>  
 </div>
-
+ 
 
 </div>
 

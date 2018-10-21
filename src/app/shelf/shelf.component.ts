@@ -18,6 +18,7 @@ export class ShelfComponent implements OnInit {
   selectedUserName: string;
   selectedUserId: number;
   CartBooks: Book[];
+  badgeCount: number = 0;
 
 
   constructor(
@@ -26,50 +27,34 @@ export class ShelfComponent implements OnInit {
     private userService: UserService,
     private notificationService: NotificationService) { }
 
-  LoanBook(book) {
-
-    this.CheckCartBooks();
-
-    if (book.loanedTo !== this.selectedUserId) {
-      if (this.CartBooks.filter(item => item.bookId == book.bookId).length == 0) {
-        this.bookService.LoanBook(book, this.selectedUserId)
-          .subscribe(
-            data => {
-              this.getBooks();
-            }, error => {
-              console.log('LoanBook() error', error);
-            }
-          );
-      } else {
-        alert('Already added in a cart.');
-      }
-    } else {
-      alert('Already added in a cart.');
+  CheckCartBooks() {
+    if (this.selectedUserId > 0) {
+      this.cartService.LoadCartForUser().subscribe(
+        books => {
+          this.CartBooks = books.filter(b => b.loanedTo == this.selectedUserId);
+          this.badgeCount = this.CartBooks.length;
+        }
+      );
     }
   }
 
-  CheckCartBooks() {
-    this.cartService.LoadCartForUser().subscribe(
-      books => {
-        this.CartBooks = books.filter(b => b.loanedTo == this.selectedUserId);
-      }
-    );
-  }
-
   ngOnInit() {
-    this.getBooks();
 
+    this.getBooks();
     this.selectedUserId = this.userService.currentUserId;
     this.selectedUserName = this.userService.selectedUserName;
     if (!this.selectedUserName) {
-      this.notificationService.showWarning('User not identified.', 'Alert !');
+      this.notificationService.showWarning('User not identified.', 'Alert !', 3000);
     }
     this.CheckCartBooks();
   }
 
   getBooks() {
     this.bookService.getBooks()
-      .subscribe(books => this.books = books);
+      .subscribe(books =>        {
+        this.books = books;
+        this.CheckCartBooks();
+      } );
   }
 
 }

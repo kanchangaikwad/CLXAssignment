@@ -11,10 +11,9 @@ import { pipe, Observable } from 'rxjs';
 export class CartService {
 
   selectedBooks: Book[];
-
+  badgeBooksCount: number;
   constructor(private bookService: BookService,
     private userService: UserService) {
-
   }
 
   AddBookToCart(book: Book, userId: number): void {
@@ -22,6 +21,7 @@ export class CartService {
     if ((book.loanedTo != userId) && (this.selectedBooks.filter( item => item.bookId == book.bookId).length > 0)) {
       book.loanedTo = userId;
       this.selectedBooks.push(book);
+      this.badgeBooksCount = this.selectedBooks.length;
       console.log(this.selectedBooks.length);
     } else {
       alert('Already added in a cart.');

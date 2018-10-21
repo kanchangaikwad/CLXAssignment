@@ -1,24 +1,30 @@
 <p>
-    <span> <h2>Hi {{ selectedUserName }} , </h2> </span>
+    <span> Hi {{ selectedUserName }} </span>
 </p>
 
 <div *ngIf="selectedBooks?.length > 0">
     <div class="container-fluid">      
       <div class="row alert-info center"  >
-          <div class="col-md-4"><h3>Title</h3></div>
-          <div class="col-md-4"><h3>ISBN</h3></div>
+          <div class="col-md-4"><h4>Title</h4></div>
+          <div class="col-md-4"><h4>ISBN</h4></div>
           <div class="col-md-4"></div>
     </div>
+    <div class="row">&nbsp;
+            
+      </div>
     <div class="row table table-hover" *ngFor="let book of selectedBooks;" >
-            <div class="col-md-4"><h3>{{ book?.title }}</h3></div>
-            <div class="col-md-4"><h3>{{ book?.isbn }}</h3></div>
-            <div class="col-md-4"><input type="button" class="btn btn-default" (click)="BookReturn(book)"  value="Return"></div>
+            <div class="col-md-4"><h4>{{ book?.title }}</h4></div>
+            <div class="col-md-4"><h4>{{ book?.isbn }}</h4></div>
+            
+            <div class="col-md-3" style="vertical-align: middle" >
+                <input type="button" class="btn btn-info" (click)="BookReturn(book)"  value="Return">
+            </div>
         </div>
 
     </div>
 </div>
  <div *ngIf="!selectedBooks || selectedBooks?.length == 0">
-    <div class="well">
+    <div class="well" style="background-color: #d9edf7">
             No books added in cart !!
     </div>
 </div> 
