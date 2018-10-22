@@ -4,5 +4,6 @@ title: string;
 author: string;
 isbn: string;
 loanedTo: number;
+
 }
 

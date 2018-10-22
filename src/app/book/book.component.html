@@ -1,12 +1,10 @@
 <div class="row clsbook shadow">
-  <div class="col-md-5">
-    <div *ngIf="book?.Thumbnail && book?.Thumbnail?.Url  && book?.Thumbnail?.Url !='' && book?.Thumbnail?.Url !='self'">
-      <img class="
-      img-fluid" [src]="book?.Thumbnail?.Url"  [style.height.px]="120" [style.width.px]="120"  onError="this.src='../../assets/unknown.png';"
-        />
-
-  </div>
-  <div *ngIf="!book?.Thumbnail?.Url || book?.Thumbnail?.Url=='self'">
+  <div class="col-md-5">    
+    <div *ngIf="GetCoverPageURL(book)">
+        <img class="
+        img-fluid" [src]="GetCoverPageURL(book)"  [style.height.px]="120" [style.width.px]="120"  onError="this.src='../../assets/unknown.png';"/>
+      </div>
+  <div *ngIf="!GetCoverPageURL(book)">
       <img class=" img-fluid" src="../../assets/images/noBookIcon.jfif"
      [style.height.px]="120"  [style.width.px]="120"   />
 
@@ -14,11 +12,10 @@
 </div>
 <div class="col-md-7">
   <div class="row" style="height: 100px;">
-
     <div class="row"> {{ book.author}}</div>    
     <div class="row">&nbsp;</div> 
     <div class="row" >
-      <h2>{{ book.title}} </h2>
+      <h3>{{ book.title}} </h3>
     </div>   
   </div>
   <div class="row">

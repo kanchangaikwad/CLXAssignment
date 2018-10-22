@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-10">Hi {{ selectedUserName }}</div>
-  <div class="col-md-2">
+  <div class="col-md-2" style="float: right;">
       <a title=" {{ badgeCount }} books in cart" routerLink="/cart" text-decoration="none" style="color: rgb(83, 146, 201)" >
     <mat-icon matBadgeOverlap=true matBadgePosition="below after">shopping_cart</mat-icon>
   
@@ -12,7 +12,7 @@
 <br>
 <div class="row">
   <div *ngFor='let book of books'>
-    <div class="col-md-6">
+    <div class="col-md-8">
       <app-book [book]="book" (reloadBookshelf)="getBooks()"></app-book>
     </div>
   </div>

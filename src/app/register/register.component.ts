@@ -42,8 +42,8 @@ get f() {return this.registerForm.controls; }
 onSubmit() {
    const result: User = Object.assign({}, this.registerForm.value);
    this.registerUser(result);
-  this.clearForm();
-this.notificationService.showSuccess('Registered successfuly, now you can select your name from the list', 'Success', 5000);
+    this.clearForm();
+    this.notificationService.showSuccess('Registered successfuly, now you can select your name from the list', 'Success', 5000);
 
 }
 

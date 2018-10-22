@@ -4,6 +4,7 @@ import { BookService } from '../book.service';
 import { CartService } from '../cart.service';
 import { UserService } from '../user.service';
 import { NotificationService } from '../notification.service';
+import { LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-book',
@@ -23,7 +24,7 @@ export class BookComponent implements OnInit {
   constructor( private bookService: BookService,
     private cartService: CartService,
     private userService: UserService,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService    ) { }
 
   ngOnInit() {
      this.selectedUserId = this.userService.currentUserId;
@@ -37,7 +38,7 @@ export class BookComponent implements OnInit {
 
     this.CheckCartBooks();
 
-    if (this.book.loanedTo !== this.selectedUserId) {
+    if (this.selectedUserId) {
       if (this.CartBooks.filter(item => item.bookId == this.book.bookId).length == 0) {
         this.bookService.LoanBook(this.book, this.selectedUserId)
           .subscribe(
@@ -55,7 +56,7 @@ export class BookComponent implements OnInit {
       this.notificationService.showWarning('Please select the user from the list', 'Alert !' , 3000);
     }
   }
-
+ 
   CheckCartBooks() {
     this.cartService.LoadCartForUser().subscribe(
       books => {
@@ -63,4 +64,10 @@ export class BookComponent implements OnInit {
       }
     );
   }
+
+    GetCoverPageURL(book: Book): string {
+      let coverURL = book.title;
+      coverURL = coverURL.toLowerCase().trim().replace(/ /g, '_');
+       return '../../assets/images/' + coverURL + '.png';
+    }
 }

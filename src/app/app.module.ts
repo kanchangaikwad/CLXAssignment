@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { from } from 'rxjs';
 import { BookComponent } from './book/book.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { IntroductionComponent } from './introduction/introduction.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CartComponent,
     RegisterComponent,
     BookComponent,
-    NavbarComponent
+    NavbarComponent,
+    IntroductionComponent
   ],
   imports: [
     BrowserModule,

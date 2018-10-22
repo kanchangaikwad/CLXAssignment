@@ -27,10 +27,5 @@ export class AppComponent implements OnInit {
 
     console.log(this.LoggedinUser);
   }
-  
-  captureCurrentUser(event: any){
-    alert(event);
-    console.log(event);
-    this.loggedinUser = event;
-  }
+
 }

@@ -5,14 +5,14 @@
 <div *ngIf="selectedBooks?.length > 0">
     <div class="container-fluid">      
       <div class="row alert-info center"  >
+            <div class="col-md-1"><h4> Sr No</h4></div> 
           <div class="col-md-4"><h4>Title</h4></div>
           <div class="col-md-4"><h4>ISBN</h4></div>
-          <div class="col-md-4"></div>
+          <div class="col-md-3"></div>
     </div>
-    <div class="row">&nbsp;
-            
-      </div>
-    <div class="row table table-hover" *ngFor="let book of selectedBooks;" >
+    <div class="row">&nbsp; </div>
+    <div class="row table table-hover" *ngFor="let book of selectedBooks; let i = index">
+            <div class="col-md-1"> <h4> {{i+1}} </h4> </div>
             <div class="col-md-4"><h4>{{ book?.title }}</h4></div>
             <div class="col-md-4"><h4>{{ book?.isbn }}</h4></div>
             

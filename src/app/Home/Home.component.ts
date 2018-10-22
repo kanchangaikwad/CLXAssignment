@@ -44,9 +44,7 @@ export class HomeComponent implements OnInit {
     }
 
     setUserId(userId: number): void {
-        this.captureCurrentUser.emit('testuser');
         this.userService.setUser(userId);
-
     }
 
 }

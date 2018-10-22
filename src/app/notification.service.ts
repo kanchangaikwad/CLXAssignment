@@ -14,12 +14,13 @@ export class NotificationService {
 
 showSuccess(message: string , title?: string, time?: number ) {
   this.toastr.successToastr(message , title,
-                            {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true});
+                            {toastTimeout: time, animate: 'slideFromBottom', showCloseButton: true, position : 'bottom-right'});
 }
 
 showWarning(message: string , title?: string , time?: number) {
   this.toastr.warningToastr(message , title,
-                            {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true});
+                              {toastTimeout: time, animate: 'slideFromTop', showCloseButton: true, position : 'bottom-right'});
+
 }
 
 showError(message: string , title?: string , time?: number) {
