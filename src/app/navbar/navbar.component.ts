@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,17 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  @Input() loggedinUser: string;
-  @Input() cartcount: number;
-
-  constructor() { }
+  currentUserName: string;
+  constructor(private userService: UserService) {
+    userService.changeEmitted$.subscribe(
+      data => {
+         // console.log(text);
+         this.currentUserName = data;
+      });
+   }
 
   ngOnInit() {
   }
 
-
-  setLoggedinUser(data) {
-    console.log(data);
-  }
 }

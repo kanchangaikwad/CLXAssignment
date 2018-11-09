@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from './user.service';
 import 'hammerjs';
 import { CartService } from './cart.service';
@@ -10,7 +10,7 @@ import { CartService } from './cart.service';
 })
 export class AppComponent implements OnInit {
 
-
+  @Output() valueChange = new EventEmitter();
   title = 'CLXBookShelf';
   LoggedinUser = '';
   loggedinUser:string= '';

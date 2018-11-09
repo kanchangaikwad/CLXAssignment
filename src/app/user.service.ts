@@ -1,7 +1,7 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { User } from './user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, of } from 'rxjs';
+import { Observable, throwError, of, Subject } from 'rxjs';
 import { Users } from './mockUsers';
 import { catchError } from 'rxjs/operators';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
@@ -19,6 +19,18 @@ export class UserService {
   selectedUserName: string;
   baseURLUser = 'http://localhost:10642/api/user/';
 
+
+
+  // Observable string sources
+  private emitChangeSource = new Subject<any>();
+  // Observable string streams
+  changeEmitted$ = this.emitChangeSource.asObservable();
+  // Service message commands
+  emitChange(change: any) {
+      this.emitChangeSource.next(change);
+  }
+
+
   constructor(private http: HttpClient,
               private router: Router) {
     this.getUsers().subscribe(u => this.USERS = u);
@@ -35,7 +47,7 @@ export class UserService {
     this.currentUserId = usrId;
     this.selectedUserObj = this.USERS.find(u => u.userId == usrId);
     this.selectedUserName = this.selectedUserObj.firstName;
-    this.router.navigateByUrl('/shelf');
+   
   }  else {
     this.currentUserId = null;
     this.selectedUserObj = null;

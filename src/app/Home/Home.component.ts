@@ -23,11 +23,17 @@ export class HomeComponent implements OnInit {
 
     @Output() captureCurrentUser = new EventEmitter<string>();
 
+    @Output() valueChange = new EventEmitter();
+
+   
+    currentLoggedInuser:string;
+
     users: User[];
     selectedUserId: number;
     constructor(private bookService: BookService ,
                 private userService: UserService,
-                private cartService: CartService) {
+                private cartService: CartService,
+                private router: Router) {
         this.users = userService.USERS;
         console.log(JSON.stringify(this.users));
     }
@@ -44,7 +50,12 @@ export class HomeComponent implements OnInit {
     }
 
     setUserId(userId: number): void {
+        this.userService.emitChange(' Guest ');
         this.userService.setUser(userId);
+        if(userId) {
+              this.userService.emitChange(this.userService.selectedUserName);
+              this.router.navigateByUrl('/shelf');
+        }
     }
 
 }
