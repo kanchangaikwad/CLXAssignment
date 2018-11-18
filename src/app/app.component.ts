@@ -24,8 +24,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.LoggedinUser = this.userService.selectedUserName;
     this.badgeCount = this.cartService.badgeBooksCount;
-
-    console.log(this.LoggedinUser);
   }
 
 }
