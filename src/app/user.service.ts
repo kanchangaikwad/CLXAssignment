@@ -47,7 +47,7 @@ export class UserService {
     this.currentUserId = usrId;
     this.selectedUserObj = this.USERS.find(u => u.userId == usrId);
     this.selectedUserName = this.selectedUserObj.firstName;
-   
+
   }  else {
     this.currentUserId = null;
     this.selectedUserObj = null;
@@ -71,7 +71,6 @@ export class UserService {
 
 
   registerUser(user: User): void {
-    // book.loanedTo = parseInt(userId.toString());
     console.log(user);
     this.http.post(this.baseURLUser + 'adduser', user).subscribe(
       data => {
